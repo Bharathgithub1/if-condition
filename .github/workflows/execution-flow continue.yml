@@ -32,6 +32,7 @@ jobs:
           path: node_modules #/~.npm inplace of npm cache using node_modules for lin
           key: deps-node-modul-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
         continue-on-error: true
