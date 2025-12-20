@@ -29,6 +29,7 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
+
           path: node_modules #/~.npm inplace of npm cache using node_modules for lin
           key: deps-node-modul-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
@@ -39,7 +40,6 @@ jobs:
         id: test-code
         run: npm run test
       - name: Upload test report
-        if: failure() &&  steps.test-code.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with:
           name: test-report
